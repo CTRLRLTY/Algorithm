@@ -1,16 +1,10 @@
+#include "Process.cxx"
+#include "tool.cxx"
 #include <algorithm>
 #include <iostream>
 #include <vector>
-#include "Process.cxx"
 
-float get_average(const std::vector<float> &v) {
-  float acc{0.0f};
-
-  for (auto &&e : v)
-    acc += e;
-
-  return acc / v.size();
-}
+float Process::get_wait_time() const { return start_time - arrival_time; }
 
 int main() {
   // Psuedo Processes

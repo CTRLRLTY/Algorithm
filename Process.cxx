@@ -10,8 +10,9 @@ class Process {
 
 public:
   float start_time{0.0f};
+  float stop_time{0.0f};
 
-  Process(float p_burst_time, float p_arrival_time)
+  Process(float p_burst_time, float p_arrival_time = 0.0f)
       : burst_time{p_burst_time}, arrival_time{p_arrival_time} {}
 
   float get_burst_time() const { return burst_time; }
@@ -28,7 +29,7 @@ public:
     return get_completion_time() - arrival_time;
   }
 
-  float get_wait_time() const { return start_time - arrival_time; }
+  float get_wait_time() const;
 
   void execute() { ++execution_time; }
 };
