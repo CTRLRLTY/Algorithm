@@ -1,9 +1,12 @@
 #ifndef PROCESS_CXX
 #define PROCESS_CXX
+#include <string>
+#include <string_view>
 
 // Process structure
 class Process {
   // The approximate execution time known by the CPU
+  std::string name;
   float burst_time;
   float arrival_time;
 
@@ -15,10 +18,13 @@ public:
   float start_time{0.0f};
   float stop_time{0.0f};
 
-  Process(float p_burst_time, float p_arrival_time = 0.0f)
-      : burst_time{p_burst_time}, arrival_time{p_arrival_time} {}
+  Process(std::string_view p_name, float p_burst_time = 0.0f,
+          float p_arrival_time = 0.0f)
+      : name{p_name}, burst_time{p_burst_time}, arrival_time{p_arrival_time} {}
 
   // Getter
+  std::string_view get_name() const { return name; }
+
   float get_burst_time() const { return burst_time; }
 
   float get_arrival_time() const { return arrival_time; }

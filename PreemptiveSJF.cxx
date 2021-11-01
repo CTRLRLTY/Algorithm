@@ -11,10 +11,10 @@ float Process::get_wait_time() const {
 
 int main() {
   // Psuedo Processes
-  Process P1{12.0f, 0.0f};
-  Process P2{4.0f, 3.0f};
-  Process P3{9.0f, 5.0f};
-  Process P4{2.0f, 7.0f};
+  Process P1{"A", 12.0f, 0.0f};
+  Process P2{"B", 4.0f, 3.0f};
+  Process P3{"C", 9.0f, 5.0f};
+  Process P4{"D", 2.0f, 7.0f};
 
   // Allocate a buffer on the stack
   char buffer[sizeof(Process) * 3 * 2];
@@ -38,8 +38,6 @@ int main() {
   // Add the initial process with least arrival_time to task
   task_queue.push_back(processes.front());
 
-  std::vector<float> wait_times;
-
   float time_accumulator{0.0f};
 
   // Naive execution loop
@@ -56,7 +54,6 @@ int main() {
         active_process.get_burst_time()) {
       active_process.stop_time = time_accumulator;
       task_queue.pop_front();
-      wait_times.push_back(active_process.get_wait_time());
     }
 
     // Break from main loop once no more task is left
@@ -80,8 +77,6 @@ int main() {
     });
   }
 
-  // Print average wait
-  std::cout << get_average(wait_times) << std::endl;
-
+  print_process_table(processes);
   return 0;
 }
