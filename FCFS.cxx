@@ -23,10 +23,7 @@ int main() {
   });
 
   float time_accumulator = 0;
-  for (auto &&p_ref_wrap : processes) {
-    // unwrap reference_wrapper
-    Process &p = p_ref_wrap.get();
-
+  for (Process &p : processes) {
     // allocate start time offset
     p.start_time = time_accumulator;
 
